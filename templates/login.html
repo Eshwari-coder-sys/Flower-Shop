@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    /* login.css inline for simplicity */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+       background: url("{{ url_for('static', filename='images/login-bg.png') }}")no-repeat center center fixed;
+      background: #fef6fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 3rem;
+      border-radius: 1rem;
+      box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .login-container h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .login-container h1 span {
+      color: #e84393;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box {
+      padding: 1rem;
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+    }
+
+    .box:focus {
+      border-color: #e84393;
+      outline: none;
+    }
+
+    .btn {
+      padding: 1rem;
+      background: #e84393;
+      color: white;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #d03682;
+    }
+
+    .switch {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.3rem;
+    }
+
+    .switch a {
+      color: #e84393;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h1><span>Flower</span> Login</h1>
+    <form id="loginForm">
+      <input type="email" name="email" placeholder="Email" class="box" required>
+      <input type="password" name="password" placeholder="Password" class="box" required>
+      <input type="submit" value="Login" class="btn">
+    </form>
+    <p class="switch">Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('loginForm');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = form.email.value.trim();
+        const password = form.password.value.trim();
+
+        if (email === '' || password === '') {
+          alert('⚠️ Please fill in all fields.');
+          return;
+        }
+
+        // For now we just simulate login (you can add backend later)
+        localStorage.setItem('loggedIn', 'true');
+        alert('✅ Login successful! Redirecting to home page...');
+        window.location.href = "{{ url_for('index') }}"; // Redirect to home page
+      });
+    });
+  </script>
+
+</body>
+</html>

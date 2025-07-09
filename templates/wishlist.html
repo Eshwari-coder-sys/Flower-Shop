@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>❤️ My Wishlist</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url("{{ url_for('static', filename='images/wishlist-bg.png') }}")no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>❤️ Your Wishlist</h1>
+    <ul>
+      {% if items %}
+        {% for item in items %}
+          <li>
+            <span><strong>{{ item.product_name }}</strong></span>
+          </li>
+        {% endfor %}
+      {% else %}
+        <p class="empty">No items in your wishlist.</p>
+      {% endif %}
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Responsive Flower Website Design</title>
+  <style>
+        .home {
+            background: url("{{ url_for('static', filename='images/home-bg.png') }}") no-repeat;
+            background: cover;
+        }
+        .contact {
+            background: url("{{ url_for('static', filename='images/contact-bg.png') }}") no-repeat ;
+            background:cover;
+                }        
+    </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- In head of templates/index.html -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+ 
+</head>
+<body>
+
+<header>
+  <input type="checkbox" id="toggler" />
+  <label for="toggler" class="fas fa-bars"></label>
+  <a href="#" class="logo">Flower<span>Shop</span></a>
+  <nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#review">Review</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="icons2">
+  <a href="{{ url_for('wishlist') }}" class="fas fa-heart"><span id="wishlistCount" class="badge">0</span></a>
+  <a href="{{ url_for('cart') }}" class="fas fa-shopping-cart"> <span id="cartCount" class="badge">0</span></a>
+  <a href="{{ url_for('login') }}" class="fas fa-user"></a>
+  <a href="{{ url_for('signup') }}" class="btn" style="font-size: 3rem; padding: 0.5rem 1.5rem;">Sign Up</a>
+</div>
+
+  <a href="#" id="logoutBtn" onclick="logout()" style="font-size: 3rem; padding: 0.5rem 1.5rem;">Logout</a>
+<script>
+  function logout() {
+    localStorage.removeItem("isLoggedIn");
+    window.location.href ="{{ url_for('login') }}";
+  }
+</script>
+
+</header>
+
+<div id="wishlist-list" class="dropdown-list"></div>
+<div id="cart-list" class="dropdown-list"></div>
+
+
+<section class="home" id="home">
+  <div class="content">
+    <h3>Fresh Flowers For You</h3>
+    <span>Natural & Beautiful Flowers</span>
+    <p>Flowers are the perfect way to express your feelings and emotions. Whether it's a birthday, anniversary, or just because, our fresh flowers will brighten anyone's day.</p>
+    <a href="#" class="btn">Shop Now</a>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <h1 class="heading"><span>About</span> Us</h1>
+  <div class="row">
+    <div class="video-container">
+       <video src="{{ url_for('static', filename='images/video-src.mp4') }}" autoplay muted loop></video>
+
+      <h3>Best Flower Seller</h3>
+    </div>
+    <div class="content">
+      <h3>We Are Flower Seller</h3>
+      <p>We are a leading flower seller, dedicated to providing the freshest and most beautiful flowers for every occasion. Our passion for flowers drives us to source only the best blooms, ensuring that our customers receive top-quality products every time.</p>
+      <p>With a wide variety of flowers available, we cater to all tastes and preferences. Whether you're looking for classic roses, exotic orchids, or seasonal blooms, we have something for everyone.</p>
+      <a href="#" class="btn">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<section class="icons-container">
+  <div class="icons1">
+    <img src="{{ url_for('static', filename='images/icon-1.png') }}"alt="icon-1" />
+    <div class="info">
+      <h3>Free Delivery</h3>
+      <span>On all orders</span>
+    </div>
+  </div>
+  <div class="icons1">
+    <img src="{{ url_for('static', filename='images/icon-2.png') }}"alt="icon-2" />
+    <div class="info">
+      <h3>10 Days Returns</h3>
+      <span>Money back guarantee</span>
+    </div>
+  </div>
+  <div class="icons1">
+    <img src="{{ url_for('static', filename='images/icon-3.png') }}" alt="icon-3" />
+    <div class="info">
+      <h3>Offers & Gifts</h3>
+      <span>On all orders</span>
+    </div>
+  </div>
+  <div class="icons1">
+    <img src="{{ url_for('static', filename='images/icon-4.png') }}" alt="icon-4" />
+    <div class="info">
+      <h3>Secure Payment</h3>
+      <span>Protected by PayPal</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="products" id="products">
+  <a href="#products">Products</a>
+  <h1 class="heading">Our <span>Latest</span> Products</h1>
+  <div class="box-container">
+
+    <!-- Repeat for all 9 products -->
+    <div class="box">
+      <span class="discount">-10%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-1.png') }}" alt="1" />
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-11%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-2.png') }}"alt="2" />
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+     
+    <div class="box">
+      <span class="discount">-12%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-3.png') }}"alt="3" />
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-14%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-4.png') }}"alt="4" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-15%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-5.png') }}"alt="5" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-16%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-6.png') }}"alt="6" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-17%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-7.png') }}"alt="7" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-18%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-8.png') }}"alt="8" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+
+    <div class="box">
+      <span class="discount">-19%</span>
+      <div class="image">
+        <img src="{{ url_for('static', filename='images/product-9.png') }}"alt="9" />
+
+        <div class="icons">
+          <a href="#" class="fas fa-heart"></a>
+          <a href="#" class="btn"><i class="fas fa-shopping-cart"></i> Add To Cart</a>
+          <a href="#" class="fas fa-share"></a>
+        </div>
+      </div>
+      <div class="content">
+        <h3>Flower Pot</h3>
+        <div class="price">$12.99 <span>$15.99</span></div>
+      </div>
+    </div>
+    <!-- Copy and paste the above div for other products (product-2.jpg to product-9.jpg) and change discount and image src -->
+
+  </div>
+</section>
+
+<section class="review" id="review">
+  <a href="#review">Review</a>
+  <h1 class="heading">Customer's <span>Review</span></h1>
+  <div class="box-container">
+
+    <div class="box">
+      <div class="stars">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </div>
+      <p>Great selection of flowers and plants. The quality is top-notch, and the delivery was prompt. Highly recommend!</p>
+      <div class="user">
+        <img src="{{ url_for('static', filename='images/review-1.png') }}" alt="review-1" />
+
+        <div class="info">
+          <h3>John Doe</h3><span>Happy Customer</span>
+        </div>
+      </div>
+      <span class="fas fa-quote-right"></span>
+    </div>
+
+    <div class="box">
+      <div class="stars">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </div>
+      <p>Great selection of flowers and plants. The quality is top-notch, and the delivery was prompt. Highly recommend!</p>
+      <div class="user">
+        <img src="{{ url_for('static', filename='images/review-2.png') }}" alt="review-2" />
+
+        <div class="info">
+          <h3>Joe</h3><span>Happy Customer</span>
+        </div>
+      </div>
+      <span class="fas fa-quote-right"></span>
+    </div>
+
+    <div class="box">
+      <div class="stars">
+        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+      </div>
+      <p>Great selection of flowers and plants. The quality is top-notch, and the delivery was prompt. Highly recommend!</p>
+      <div class="user">
+        <img src="{{ url_for('static', filename='images/review-3.png') }}" alt="review-3">
+        <div class="info">
+          <h3>Mary</h3><span>Happy Customer</span>
+        </div>
+      </div>
+      <span class="fas fa-quote-right"></span>
+    </div>
+
+    <!-- Add other reviews similarly -->
+
+  </div>
+</section>
+
+<section class="contact" id="contact">
+ 
+  <h1 class="heading">Contact <span>Us</span></h1>
+  <div class="row">
+    <div class="image">
+      <img src="images/contact-img.png" alt="contact" />
+    </div>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Name" class="box" />
+      <input type="email" name="email" placeholder="Email" class="box" />
+      <input type="tel" name="phone" placeholder="Number" class="box" />
+      <textarea name="message" cols="30" rows="10" placeholder="Message" class="box"></textarea>
+      <input type="submit" value="Send Message" class="btn" />
+    </form>
+
+    <div class="image">
+      <img src="images/contact-img.svg" alt="" />
+    </div>
+  </div>
+</section>
+
+<section class="footer">
+  <div class="box-container">
+    <div class="box">
+      <h3>Quick Links</h3>
+      <a href="#">Home</a><a href="#">About</a><a href="#">Products</a><a href="#">Review</a><a href="#">Contact</a>
+    </div>
+    <div class="box">
+      <h3>Extra Links</h3>
+      <a href="#">My Account</a><a href="#">My Order</a><a href="#">My Favourite</a>
+    </div>
+    <div class="box">
+      <h3>Locations</h3>
+      <a href="#">India</a><a href="#">USA</a><a href="#">Japan</a><a href="#">France</a>
+    </div>
+    <div class="box">
+      
+      <h3>Contact Info</h3>
+      <a href="#">+123-456-7890</a>
+      <a href="#">example@gmail.com</a>
+      <a href="#">Bangalore, India</a>
+     <img src="{{ url_for('static', filename='images/payment-cards.png') }}" alt="payment-cards">
+    </div>
+  </div>
+  <div class="credit">Created by <span>ms.web designer</span> | All Rights Reserved</div>
+</section>
+
+
+<!-- Modal for Login -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span onclick="document.getElementById('loginModal').style.display='none'" class="close">&times;</span>
+    <h2>Login</h2>
+    <input id="email" type="email" placeholder="Email" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="handleLogin()">Login</button>
+  </div>
+</div>
+<script>
+  function handleLogin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    login(email, password).then(() => {
+      alert("Login successful!");
+      location.reload();
+    }).catch(error => {
+      alert(error.message);
+    });
+  }
+</script>
+
+
+<!-- Firebase App (Core SDK) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<!-- Firebase Auth SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+</body>
+
+
+</html>

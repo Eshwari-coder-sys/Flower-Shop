@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🛒 My Cart</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url("{{ url_for('static', filename='images/cart-bg.png') }}")no-repeat;
+      background-size: cover;
+      color: #333;
+    }
+    .container {
+      max-width: 700px;
+      margin: 5rem auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      padding: 3rem;
+      box-shadow: 0 0 1rem rgba(0,0,0,0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #e84393;
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.3rem 1rem rgba(0,0,0,0.1);
+    }
+    .remove {
+      background: #e84393;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .remove:hover {
+      background: #c73677;
+    }
+    .empty {
+      text-align: center;
+      font-size: 1.6rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛒 Your Cart</h1>
+    <ul id="cartItems"></ul>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartList = document.getElementById("cartItems");
+
+    function renderCart() {
+      cartList.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartList.innerHTML = "<p class='empty'>No items in your cart.</p>";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span><strong>${item.name}</strong> - ${item.price}</span>
+          <button class="remove" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartList.appendChild(li);
+      });
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
